@@ -1,0 +1,200 @@
+/*=====================================================
+    SAMSEC LABS V2
+    Building Secure Digital Futures
+
+    File: reset.css
+    Description:
+    CSS Reset & Global Defaults
+
+    Mobile First
+======================================================*/
+
+
+/*=========================================
+  RESET
+=========================================*/
+
+*,
+*::before,
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+/*=========================================
+  HTML
+=========================================*/
+
+html{
+    scroll-behavior:smooth;
+    -webkit-text-size-adjust:100%;
+}
+
+
+/*=========================================
+  BODY
+=========================================*/
+
+body{
+    font-family:var(--font-body);
+    font-size:var(--fs-base);
+    line-height:1.6;
+    background:var(--bg-900);
+    color:var(--text);
+    overflow-x:hidden;
+    min-height:100vh;
+    text-rendering:optimizeLegibility;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+}
+
+
+/*=========================================
+  IMAGES
+=========================================*/
+
+img,
+picture{
+    display:block;
+    max-width:100%;
+    height:auto;
+}
+
+
+/*=========================================
+  MEDIA
+=========================================*/
+
+video,
+canvas,
+svg{
+    display:block;
+    max-width:100%;
+}
+
+
+/*=========================================
+  LINKS
+=========================================*/
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+
+/*=========================================
+  LISTS
+=========================================*/
+
+ul,
+ol{
+    list-style:none;
+}
+
+
+/*=========================================
+  BUTTONS
+=========================================*/
+
+button{
+    font:inherit;
+    border:none;
+    outline:none;
+    background:none;
+    cursor:pointer;
+}
+
+
+/*=========================================
+  INPUTS
+=========================================*/
+
+input,
+textarea,
+select{
+    font:inherit;
+    color:inherit;
+    background:none;
+    border:none;
+    outline:none;
+}
+
+
+/*=========================================
+  TABLES
+=========================================*/
+
+table{
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+
+/*=========================================
+  HEADINGS
+=========================================*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+    font-family:var(--font-heading);
+    font-weight:var(--fw-bold);
+    line-height:1.2;
+}
+
+
+/*=========================================
+  PARAGRAPHS
+=========================================*/
+
+p{
+    color:var(--text-light);
+}
+
+
+/*=========================================
+  SELECTION
+=========================================*/
+
+::selection{
+    background:var(--primary);
+    color:#fff;
+}
+
+
+/*=========================================
+  SCROLLBAR
+=========================================*/
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:var(--bg-800);
+}
+
+::-webkit-scrollbar-thumb{
+    background:var(--primary);
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:var(--primary-light);
+}
+
+
+/*=========================================
+  FOCUS
+=========================================*/
+
+:focus-visible{
+    outline:2px solid var(--primary);
+    outline-offset:4px;
+}
