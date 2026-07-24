@@ -4,6 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
         year.textContent = new Date().getFullYear();
     }
 
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('./sw.js').catch(() => {});
+        });
+    }
+
     const counters = document.querySelectorAll('[data-count]');
     if (counters.length) {
         const observer = new IntersectionObserver((entries, obs) => {
@@ -43,6 +49,17 @@ document.addEventListener('DOMContentLoaded', () => {
             resultsShell.innerHTML = result;
         });
     }
+
+    const newsletterForms = document.querySelectorAll('.inline-form');
+    newsletterForms.forEach((form) => {
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const input = form.querySelector('input');
+            if (input) {
+                input.value = 'Subscribed';
+            }
+        });
+    });
 });
 
 function buildScannerResult(url) {
