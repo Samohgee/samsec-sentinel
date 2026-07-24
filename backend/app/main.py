@@ -8,12 +8,15 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, EmailStr, Field
 
 from .db import init_db
+from .routers import admin
 
 SECRET_KEY = os.getenv('SECRET_KEY', 'samsec-labs-enterprise-grade-secret-key-2026')
 ALGORITHM = 'HS256'
 ACCESS_TOKEN_TTL_MINUTES = int(os.getenv('ACCESS_TOKEN_TTL_MINUTES', '60'))
 
 app = FastAPI(title='SAMSEC LABS API', version='1.0.0')
+
+app.include_router(admin.router)
 
 init_db()
 
