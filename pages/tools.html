@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free security utilities from SAMSEC LABS: password generator, hash tool, JWT decoder, IP and DNS lookup, SSL checker.">
     <title>Security Tools | SAMSEC LABS</title>
+    <link rel="icon" href="../assets/images/logo/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
@@ -19,13 +24,16 @@
                     </span>
                 </a>
                 <nav class="main-nav" aria-label="Primary navigation">
-                    <a href="../index.html#platform">Platform</a>
-                    <a href="../pages/tools.html">Tools</a>
-                    <a href="../pages/scanner.html">Scanner</a>
-                    <a href="../pages/dashboard.html">Dashboard</a>
+                    <a href="../index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="services.html">Services</a>
+                    <a href="portfolio.html">Portfolio</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="contact.html">Contact</a>
                 </nav>
                 <div class="nav-actions">
-                    <a class="button button-primary" href="../pages/register.html">Start Free</a>
+                    <a class="button button-secondary" href="tools.html">Tools</a>
+                    <a class="button button-primary" href="request-service.html">Request a service</a>
                 </div>
             </div>
         </header>
@@ -34,9 +42,10 @@
             <div class="section-heading">
                 <p class="eyebrow">Tools</p>
                 <h2>Free security utilities</h2>
+                <p>Client-side and server-side helpers for everyday security tasks.</p>
             </div>
 
-            <div class="tools-grid">
+            <div class="service-grid" style="grid-template-columns: repeat(3, minmax(0,1fr));">
                 <div class="glass-card panel-card">
                     <h3>Password Generator</h3>
                     <p class="hero-text">Create strong random passwords.</p>
@@ -71,24 +80,24 @@
 
                 <div class="glass-card panel-card">
                     <h3>Hash Generator</h3>
-                    <p class="hero-text">Generate common hashes (MD5, SHA1, SHA256).</p>
+                    <p class="hero-text">Generate SHA-1 / SHA-256 hashes.</p>
                     <div class="field"><label for="hg-input">Input</label><input id="hg-input" type="text"></div>
                     <div class="field"><label for="hg-algo">Algorithm</label>
-                        <select id="hg-algo"><option>sha256</option><option>sha1</option><option>md5</option></select>
+                        <select id="hg-algo"><option>sha256</option><option>sha1</option></select>
                     </div>
                     <div style="display:flex;gap:0.5rem;align-items:center;"><input id="hg-result" readonly style="flex:1;padding:0.85rem;border-radius:0.75rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06)"><button id="hg-generate" class="button button-primary">Hash</button></div>
                 </div>
 
                 <div class="glass-card panel-card">
-                    <h3>Base64 Encode / Decode</h3>
-                    <p class="hero-text">Quickly encode or decode base64.</p>
+                    <h3>Base64</h3>
+                    <p class="hero-text">Encode or decode base64.</p>
                     <div class="field"><label for="b64-input">Input</label><input id="b64-input" type="text"></div>
                     <div style="display:flex;gap:0.5rem;align-items:center;"><input id="b64-result" readonly style="flex:1;padding:0.85rem;border-radius:0.75rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06)"><button id="b64-encode" class="button button-primary">Encode</button><button id="b64-decode" class="button button-secondary">Decode</button></div>
                 </div>
 
                 <div class="glass-card panel-card">
                     <h3>JWT Decoder</h3>
-                    <p class="hero-text">Decode JWT payloads client-side (no verification).</p>
+                    <p class="hero-text">Decode JWT payloads (no signature verification).</p>
                     <div class="field"><label for="jwt-input">JWT</label><input id="jwt-input" type="text" placeholder="Paste JWT here"></div>
                     <pre id="jwt-result" style="background:rgba(0,0,0,0.35);padding:0.8rem;border-radius:0.6rem;color:var(--muted);overflow:auto;max-height:200px"></pre>
                 </div>
@@ -107,16 +116,9 @@
 
                 <div class="glass-card panel-card">
                     <h3>IP Lookup</h3>
-                    <p class="hero-text">Resolve hostname to IP address (server-side).</p>
+                    <p class="hero-text">Resolve hostname to IP (server-side).</p>
                     <div class="field"><label for="ip-host">Hostname</label><input id="ip-host" type="text" placeholder="example.com"></div>
                     <div style="display:flex;gap:0.5rem;align-items:center;"><input id="ip-result" readonly style="flex:1;padding:0.85rem;border-radius:0.75rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06)"><button id="ip-lookup" class="button button-primary">Lookup</button></div>
-                </div>
-
-                <div class="glass-card panel-card">
-                    <h3>DNS Lookup</h3>
-                    <p class="hero-text">Query A/MX records (server-side).</p>
-                    <div class="field"><label for="dns-host">Hostname</label><input id="dns-host" type="text" placeholder="example.com"></div>
-                    <div style="display:flex;gap:0.5rem;align-items:center;"><input id="dns-result" readonly style="flex:1;padding:0.85rem;border-radius:0.75rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06)"><button id="dns-lookup" class="button button-primary">Lookup</button></div>
                 </div>
 
                 <div class="glass-card panel-card">
@@ -125,18 +127,18 @@
                     <div class="field"><label for="ssl-host">Hostname</label><input id="ssl-host" type="text" placeholder="example.com"></div>
                     <div style="display:flex;gap:0.5rem;align-items:center;"><input id="ssl-result" readonly style="flex:1;padding:0.85rem;border-radius:0.75rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06)"><button id="ssl-check" class="button button-primary">Check</button></div>
                 </div>
-
             </div>
         </main>
 
         <footer class="site-footer">
             <div class="container footer-shell">
                 <p>© <span id="year"></span> SAMSEC LABS. Building Secure Digital Futures.</p>
-                <a href="pages/login.html">Sign in</a>
+                <a href="request-service.html">Request a service</a>
             </div>
         </footer>
     </div>
 
+    <script src="../assets/js/config.js"></script>
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/tools.js"></script>
 </body>

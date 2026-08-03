@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | SAMSEC Sentinel AI</title>
+    <meta name="description" content="Admin sign in for SAMSEC LABS.">
+    <title>Admin Login | SAMSEC LABS</title>
+    <link rel="icon" href="../assets/images/logo/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -12,29 +14,82 @@
 <body>
     <div class="page-shell auth-shell">
         <div class="glass-card auth-card">
-            <p class="eyebrow">Secure sign in</p>
-            <h1>Welcome back.</h1>
-            <p class="hero-text">Use your workspace credentials to access your security dashboard.</p>
-            <form class="auth-actions">
+            <p class="eyebrow">Admin sign in</p>
+            <h1>SAMSEC Control Center</h1>
+            <p class="hero-text">Sign in with your admin account to manage service requests, messages, and blog posts.</p>
+            <form class="auth-actions" id="loginForm">
                 <div class="field">
                     <label for="email">Email</label>
-                    <input id="email" type="email" placeholder="you@company.com">
+                    <input id="email" type="email" placeholder="admin@samseclabs.com" required>
                 </div>
                 <div class="field">
                     <label for="password">Password</label>
-                    <input id="password" type="password" placeholder="••••••••">
+                    <input id="password" type="password" placeholder="••••••••" required>
                 </div>
-                <button class="button button-primary" type="submit">Sign in</button>
+                <button class="button button-primary" type="submit" id="loginBtn">Sign in</button>
+                <p class="form-status" id="loginStatus" role="status" aria-live="polite"></p>
             </form>
-            <div class="social-row">
-                <a href="#">Google</a>
-                <a href="#">GitHub</a>
-                <a href="#">Microsoft</a>
-            </div>
-            <p style="margin-top:1rem;color:var(--muted);"><a href="register.html">Need an account?</a></p>
+            <p style="margin-top:1rem;color:var(--muted);"><a href="../index.html">Back to website</a></p>
         </div>
     </div>
 
+    <style>
+        .form-status { color: var(--muted); margin: 0; min-height: 1.2rem; }
+        .form-status.error { color: #ff6b6b; }
+        .form-status.ok { color: var(--green); }
+    </style>
+
+    <script src="../assets/js/config.js"></script>
     <script src="../assets/js/main.js"></script>
+    <script type="module">
+        import { supabase } from '../assets/js/supabase.js';
+
+        const form = document.getElementById('loginForm');
+        const status = document.getElementById('loginStatus');
+        const btn = document.getElementById('loginBtn');
+
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session) {
+            const { data: isAdmin } = await supabase.rpc('is_admin');
+            if (isAdmin) {
+                window.location.replace('admin.html');
+                return;
+            }
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            status.textContent = '';
+            status.className = 'form-status';
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            if (!email || !password) {
+                status.textContent = 'Enter your email and password.';
+                status.classList.add('error');
+                return;
+            }
+            btn.disabled = true;
+            btn.textContent = 'Signing in…';
+            try {
+                const { error } = await supabase.auth.signInWithPassword({ email, password });
+                if (error) throw error;
+                const { data: isAdmin, error: rpcError } = await supabase.rpc('is_admin');
+                if (rpcError) throw rpcError;
+                if (!isAdmin) {
+                    await supabase.auth.signOut();
+                    throw new Error('This account is not authorized as an admin.');
+                }
+                status.textContent = 'Signed in. Redirecting…';
+                status.classList.add('ok');
+                window.location.replace('admin.html');
+            } catch (err) {
+                status.textContent = err.message || 'Sign in failed.';
+                status.classList.add('error');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Sign in';
+            }
+        });
+    </script>
 </body>
 </html>

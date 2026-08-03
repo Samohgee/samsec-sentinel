@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create account | SAMSEC Sentinel AI</title>
+    <meta name="description" content="Create your SAMSEC LABS account to request cybersecurity and development services.">
+    <title>Create account | SAMSEC LABS</title>
+    <link rel="icon" href="../assets/images/logo/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -12,28 +14,76 @@
 <body>
     <div class="page-shell auth-shell">
         <div class="glass-card auth-card">
-            <p class="eyebrow">Create workspace</p>
+            <p class="eyebrow">Create account</p>
             <h1>Start your secure journey.</h1>
-            <p class="hero-text">Set up your team, unlock AI recommendations, and monitor your digital perimeter.</p>
-            <form class="auth-actions">
+            <p class="hero-text">Set up your account to request services, track progress, and get personalized recommendations.</p>
+            <form class="auth-actions" id="registerForm" novalidate>
                 <div class="field">
                     <label for="name">Full name</label>
-                    <input id="name" type="text" placeholder="Alex Rivera">
+                    <input id="name" type="text" placeholder="Alex Rivera" required>
                 </div>
                 <div class="field">
                     <label for="email">Email</label>
-                    <input id="email" type="email" placeholder="you@company.com">
+                    <input id="email" type="email" placeholder="you@company.com" required>
                 </div>
                 <div class="field">
                     <label for="password">Password</label>
-                    <input id="password" type="password" placeholder="Create a strong password">
+                    <input id="password" type="password" placeholder="Create a strong password (min 8 characters)" minlength="8" required>
                 </div>
-                <button class="button button-primary" type="submit">Create account</button>
+                <button class="button button-primary" type="submit" id="registerBtn">Create account</button>
+                <p class="form-status" id="registerStatus" role="status" aria-live="polite"></p>
             </form>
-            <p style="margin-top:1rem;color:var(--muted);"><a href="login.html">Already have an account?</a></p>
+            <p style="margin-top:1rem;color:var(--muted);"><a href="request-service.html">Request a service without an account</a></p>
+            <p style="margin-top:0.5rem;color:var(--muted);"><a href="login.html">Admin sign in</a></p>
         </div>
     </div>
 
+    <style>
+        .form-status { color: var(--muted); margin: 0; min-height: 1.2rem; }
+        .form-status.error { color: #ff6b6b; }
+        .form-status.ok { color: var(--green); }
+    </style>
+
+    <script src="../assets/js/config.js"></script>
     <script src="../assets/js/main.js"></script>
+    <script type="module">
+        import { supabase } from '../assets/js/supabase.js';
+
+        const form = document.getElementById('registerForm');
+        const status = document.getElementById('registerStatus');
+        const btn = document.getElementById('registerBtn');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            status.textContent = '';
+            status.className = 'form-status';
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            if (!email || !password) {
+                status.textContent = 'Enter your email and a password.';
+                status.classList.add('error');
+                return;
+            }
+            btn.disabled = true;
+            btn.textContent = 'Creating…';
+            try {
+                const { error } = await supabase.auth.signUp({
+                    email,
+                    password,
+                    options: { data: { full_name: document.getElementById('name').value.trim() } },
+                });
+                if (error) throw error;
+                status.textContent = 'Account created. You can now request services or sign in to the admin panel if you are an admin.';
+                status.classList.add('ok');
+                form.reset();
+            } catch (err) {
+                status.textContent = err.message || 'Could not create account.';
+                status.classList.add('error');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Create account';
+            }
+        });
+    </script>
 </body>
 </html>
