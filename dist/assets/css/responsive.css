@@ -1,0 +1,156 @@
+/*=====================================================
+    SAMSEC LABS V2
+    Building Secure Digital Futures
+
+    File: responsive.css
+    Description:
+    Responsive Layout
+
+    Mobile First
+======================================================*/
+
+
+/*=========================================
+  LARGE DESKTOP
+=========================================*/
+
+@media (min-width:1440px){
+
+    .container{
+        max-width:1400px;
+    }
+
+}
+
+
+/*=========================================
+  DESKTOP
+=========================================*/
+
+@media (max-width:1280px){
+
+    .container{
+        width:min(100% - 3rem,1200px);
+    }
+
+}
+
+
+/*=========================================
+  LAPTOP
+=========================================*/
+
+@media (max-width:1024px){
+
+    :root{
+        --section-padding:100px;
+    }
+
+    .grid-4{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .grid-3{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+
+/*=========================================
+  TABLET
+=========================================*/
+
+@media (max-width:768px){
+
+    :root{
+        --navbar-height:70px;
+        --section-padding:80px;
+    }
+
+    .container{
+        width:min(100% - 2rem,100%);
+    }
+
+    .grid-2,
+    .grid-3,
+    .grid-4{
+        grid-template-columns:1fr;
+    }
+
+    .flex-between{
+        flex-direction:column;
+        gap:1.5rem;
+    }
+
+    .section-title{
+        font-size:2rem;
+    }
+
+    .section-description{
+        font-size:1rem;
+    }
+
+    .btn{
+        width:100%;
+    }
+
+}
+
+
+/*=========================================
+  MOBILE
+=========================================*/
+
+@media (max-width:576px){
+
+    :root{
+        --section-padding:70px;
+    }
+
+    body{
+        font-size:.95rem;
+    }
+
+    .container{
+        width:calc(100% - 1.5rem);
+    }
+
+    .section-title{
+        font-size:1.75rem;
+    }
+
+    .stat-card h2{
+        font-size:2rem;
+    }
+
+    .service-card,
+    .course-card,
+    .product-card,
+    .glass-card{
+        padding:1.5rem;
+    }
+
+}
+
+
+/*=========================================
+  SMALL MOBILE
+=========================================*/
+
+@media (max-width:360px){
+
+    .container{
+        width:calc(100% - 1rem);
+    }
+
+    .btn{
+        padding:.9rem 1.2rem;
+        font-size:.9rem;
+    }
+
+    .section-title{
+        font-size:1.5rem;
+    }
+
+}

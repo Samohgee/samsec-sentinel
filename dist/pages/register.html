@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create your SAMSEC LABS account to request cybersecurity and development services.">
+    <title>Create account | SAMSEC LABS</title>
+    <link rel="icon" href="../assets/images/logo/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <div class="page-shell auth-shell">
+        <div class="glass-card auth-card">
+            <p class="eyebrow">Create account</p>
+            <h1>Start your secure journey.</h1>
+            <p class="hero-text">Set up your account to request services, track progress, and get personalized recommendations.</p>
+            <form class="auth-actions" id="registerForm" novalidate>
+                <div class="field">
+                    <label for="name">Full name</label>
+                    <input id="name" type="text" placeholder="Alex Rivera" required>
+                </div>
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input id="email" type="email" placeholder="you@company.com" required>
+                </div>
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input id="password" type="password" placeholder="Create a strong password (min 8 characters)" minlength="8" required>
+                </div>
+                <button class="button button-primary" type="submit" id="registerBtn">Create account</button>
+                <p class="form-status" id="registerStatus" role="status" aria-live="polite"></p>
+            </form>
+            <div class="auth-divider"><span>or</span></div>
+            <button class="button button-secondary google-btn" id="googleBtn" type="button">
+                <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C12.955 4 4 12.955 4 24s8.955 20 20 20s20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002l6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/></svg>
+                Continue with Google
+            </button>
+            <p style="margin-top:1rem;color:var(--muted);"><a href="request-service.html">Request a service without an account</a></p>
+            <p style="margin-top:0.5rem;color:var(--muted);"><a href="login.html">Admin sign in</a></p>
+        </div>
+    </div>
+
+    <style>
+        .form-status { color: var(--muted); margin: 0; min-height: 1.2rem; }
+        .form-status.error { color: #ff6b6b; }
+        .form-status.ok { color: var(--green); }
+        .auth-divider { display: flex; align-items: center; gap: 0.8rem; margin: 1.2rem 0; color: var(--muted); font-size: 0.85rem; }
+        .auth-divider::before, .auth-divider::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.12); }
+        .google-btn { display: flex; align-items: center; justify-content: center; gap: 0.6rem; width: 100%; }
+    </style>
+
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script type="module">
+        import { supabase } from '../assets/js/supabase.js';
+
+        const form = document.getElementById('registerForm');
+        const status = document.getElementById('registerStatus');
+        const btn = document.getElementById('registerBtn');
+        const googleBtn = document.getElementById('googleBtn');
+
+        const redirectTo = new URL('dashboard.html', window.location.href).toString();
+
+        googleBtn.addEventListener('click', async () => {
+            status.textContent = '';
+            status.className = 'form-status';
+            googleBtn.disabled = true;
+            try {
+                const { error } = await supabase.auth.signInWithOAuth({
+                    provider: 'google',
+                    options: { redirectTo: redirectTo },
+                });
+                if (error) throw error;
+            } catch (err) {
+                status.textContent = err.message || 'Google sign-in failed.';
+                status.classList.add('error');
+                googleBtn.disabled = false;
+            }
+        });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            status.textContent = '';
+            status.className = 'form-status';
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            if (!email || !password) {
+                status.textContent = 'Enter your email and a password.';
+                status.classList.add('error');
+                return;
+            }
+            btn.disabled = true;
+            btn.textContent = 'Creating…';
+            try {
+                const { error } = await supabase.auth.signUp({
+                    email,
+                    password,
+                    options: { data: { full_name: document.getElementById('name').value.trim() } },
+                });
+                if (error) throw error;
+                status.textContent = 'Account created. You can now request services or sign in to the admin panel if you are an admin.';
+                status.classList.add('ok');
+                form.reset();
+            } catch (err) {
+                status.textContent = err.message || 'Could not create account.';
+                status.classList.add('error');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Create account';
+            }
+        });
+    </script>
+</body>
+</html>

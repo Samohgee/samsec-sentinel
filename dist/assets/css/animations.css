@@ -1,0 +1,424 @@
+/*=====================================================
+    SAMSEC LABS V2
+    Building Secure Digital Futures
+
+    File: animations.css
+    Description:
+    Global Animations
+
+    Mobile First
+======================================================*/
+
+
+/*=========================================
+  TRANSITIONS
+=========================================*/
+
+*{
+    transition:
+        background-color .3s ease,
+        color .3s ease,
+        border-color .3s ease,
+        transform .35s ease,
+        box-shadow .35s ease,
+        opacity .35s ease;
+}
+
+
+/*=========================================
+  FADE UP
+=========================================*/
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(50px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.fade-up{
+    animation:fadeUp .8s ease forwards;
+}
+
+
+/*=========================================
+  FADE IN
+=========================================*/
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+
+}
+
+.fade-in{
+    animation:fadeIn .8s ease forwards;
+}
+
+
+/*=========================================
+  ZOOM IN
+=========================================*/
+
+@keyframes zoomIn{
+
+    from{
+        opacity:0;
+        transform:scale(.9);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+.zoom-in{
+    animation:zoomIn .8s ease forwards;
+}
+
+
+/*=========================================
+  FLOAT
+=========================================*/
+
+@keyframes floating{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-12px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
+}
+
+.float{
+    animation:floating 5s ease-in-out infinite;
+}
+
+
+/*=========================================
+  GLOW PULSE
+=========================================*/
+
+@keyframes glow{
+
+    0%{
+        box-shadow:0 0 0 rgba(0,200,255,0);
+    }
+
+    50%{
+        box-shadow:0 0 35px rgba(0,200,255,.45);
+    }
+
+    100%{
+        box-shadow:0 0 0 rgba(0,200,255,0);
+    }
+
+}
+
+.glow{
+    animation:glow 2.5s infinite;
+}
+
+
+/*=========================================
+  ROTATE
+=========================================*/
+
+@keyframes rotate360{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+.rotate{
+    animation:rotate360 20s linear infinite;
+}
+
+
+/*=========================================
+  HERO BACKGROUND
+=========================================*/
+
+@keyframes heroGradient{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
+
+}
+
+
+/*=========================================
+  BLINK CURSOR
+=========================================*/
+
+@keyframes blink{
+
+    0%,50%{
+        opacity:1;
+    }
+
+    51%,100%{
+        opacity:0;
+    }
+
+}
+
+.cursor{
+    animation:blink .9s infinite;
+}
+
+
+/*=========================================
+  TERMINAL LINE
+=========================================*/
+
+@keyframes terminalLine{
+
+    from{
+        opacity:0;
+        transform:translateX(-20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+
+}
+
+.terminal-line{
+    animation:terminalLine .4s ease;
+}
+
+
+/*=========================================
+  SCROLL INDICATOR
+=========================================*/
+
+@keyframes scroll{
+
+    0%{
+        transform:translateY(0);
+        opacity:0;
+    }
+
+    50%{
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(18px);
+        opacity:0;
+    }
+
+}
+
+
+/*=========================================
+  RIPPLE
+=========================================*/
+
+@keyframes ripple{
+
+    from{
+        transform:scale(0);
+        opacity:.7;
+    }
+
+    to{
+        transform:scale(2.5);
+        opacity:0;
+    }
+
+}
+
+
+/*=========================================
+  CARD HOVER
+=========================================*/
+
+.card-hover:hover{
+
+    transform:
+        translateY(-10px)
+        scale(1.02);
+
+}
+
+
+/*=========================================
+  LOADER SPIN
+=========================================*/
+
+@keyframes loader{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+.loader-spin{
+
+    animation:
+        loader .8s linear infinite;
+
+}
+
+
+/*=========================================
+  PARTICLES
+=========================================*/
+
+@keyframes particle{
+
+    0%{
+        transform:translateY(0);
+        opacity:0;
+    }
+
+    25%{
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(-150px);
+        opacity:0;
+    }
+
+}
+
+
+/*=========================================
+  CYBER BORDER
+=========================================*/
+
+@keyframes borderGlow{
+
+    0%{
+        border-color:rgba(0,200,255,.15);
+    }
+
+    50%{
+        border-color:rgba(0,200,255,.8);
+    }
+
+    100%{
+        border-color:rgba(0,200,255,.15);
+    }
+
+}
+
+.border-animate{
+
+    animation:
+        borderGlow 2.5s infinite;
+
+}
+
+
+/*=========================================
+  SCROLL REVEAL
+=========================================*/
+
+.reveal{
+
+    opacity:0;
+
+    transform:translateY(60px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+
+}
+
+.reveal.active{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+
+/*=========================================
+  HOVER LIFT
+=========================================*/
+
+.hover-lift{
+
+    transition:var(--transition);
+
+}
+
+.hover-lift:hover{
+
+    transform:translateY(-8px);
+
+}
+
+
+/*=========================================
+  HOVER SCALE
+=========================================*/
+
+.hover-scale{
+
+    transition:var(--transition);
+
+}
+
+.hover-scale:hover{
+
+    transform:scale(1.05);
+
+}
+
+
+/*=========================================
+  BUTTON PRESS
+=========================================*/
+
+.button-press:active{
+
+    transform:scale(.96);
+
+}

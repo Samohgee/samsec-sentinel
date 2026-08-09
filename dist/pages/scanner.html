@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Website Scanner | SAMSEC LABS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="icon" href="../assets/images/logo/favicon.png">
+    <meta name="description" content="Scan a website for security posture with the SAMSEC LABS AI website scanner.">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="site-header">
+            <div class="container nav-shell">
+                <a class="brand" href="../index.html">
+                    <span class="brand-mark">S</span>
+                    <span>
+                        <strong>SAMSEC LABS</strong>
+                        <small>Building Secure Digital Futures</small>
+                    </span>
+                </a>
+                <nav class="main-nav" aria-label="Primary navigation">
+                    <a href="../index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="services.html">Services</a>
+                    <a href="portfolio.html">Portfolio</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="contact.html">Contact</a>
+                </nav>
+                <div class="nav-actions">
+                    <a class="button button-secondary" href="contact.html">Talk to us</a>
+                    <a class="button button-primary" href="request-service.html">Request a service</a>
+                </div>
+            </div>
+        </header>
+
+        <main class="container scanner-shell">
+            <p class="eyebrow">AI website scanner</p>
+            <h1>Scan a digital surface in seconds.</h1>
+            <p class="hero-text">Enter a website and the platform will analyze HTTPS posture, headers, DNS, cookie settings, and common OWASP risks.</p>
+            <form class="scanner-form" id="scannerForm">
+                <input id="scanUrl" type="url" placeholder="https://example.com" required>
+                <button class="button button-primary" type="submit">Analyze</button>
+            </form>
+
+            <div class="results-shell" id="resultsShell">
+                <div class="glass-card score-card">
+                    <div>
+                        <p class="label">Overall security score</p>
+                        <div class="score-value">--</div>
+                    </div>
+                    <div class="pill">Waiting for analysis</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

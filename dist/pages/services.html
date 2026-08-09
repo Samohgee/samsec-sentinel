@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cybersecurity and development services from SAMSEC LABS: pentesting, vulnerability assessment, web and mobile development, AI and messaging bots, cloud security, and more.">
+    <title>Services | SAMSEC LABS</title>
+    <link rel="icon" href="../assets/images/logo/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="site-header">
+            <div class="container nav-shell">
+                <a class="brand" href="../index.html">
+                    <span class="brand-mark">S</span>
+                    <span>
+                        <strong>SAMSEC LABS</strong>
+                        <small>Building Secure Digital Futures</small>
+                    </span>
+                </a>
+                <nav class="main-nav" aria-label="Primary navigation">
+                    <a href="../index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="services.html">Services</a>
+                    <a href="portfolio.html">Portfolio</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="contact.html">Contact</a>
+                </nav>
+                <div class="nav-actions">
+                    <a class="button button-secondary" href="contact.html">Talk to us</a>
+                    <a class="button button-primary" href="request-service.html">Request a service</a>
+                </div>
+            </div>
+        </header>
+
+        <main class="container scanner-shell">
+            <div class="section-heading">
+                <p class="eyebrow">Services</p>
+                <h2>Cybersecurity and development, under one roof.</h2>
+                <p>From offensive security to product engineering, our specialists deliver premium outcomes with secure, modern workflows. Pick a service to request it directly.</p>
+            </div>
+
+            <div class="service-grid" id="servicesGrid"></div>
+
+            <div class="glass-card cta-card" style="margin-top: 2rem;">
+                <h2>Not sure which service fits?</h2>
+                <p>Tell us about your goals and we will recommend the right engagement.</p>
+                <a class="button button-primary" href="request-service.html">Request a service</a>
+            </div>
+        </main>
+
+        <footer class="site-footer">
+            <div class="container footer-shell">
+                <p>© <span id="year"></span> SAMSEC LABS. Building Secure Digital Futures.</p>
+                <a href="request-service.html">Request a service</a>
+            </div>
+        </footer>
+    </div>
+
+    <style>
+        .service-icon-box { width: 3rem; height: 3rem; border-radius: 0.9rem; display: grid; place-items: center; background: rgba(0,200,255,0.12); color: var(--cyan); margin-bottom: 1rem; font-size: 1.3rem; font-weight: 700; }
+        .service-card-action { display: flex; gap: 0.6rem; margin-top: 1rem; flex-wrap: wrap; }
+        .btn-sm { padding: 0.55rem 1rem; font-size: 0.9rem; }
+    </style>
+
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script type="module">
+        import { SERVICES } from '../assets/js/supabase.js';
+
+        const grid = document.getElementById('servicesGrid');
+        grid.innerHTML = SERVICES.map((s) => `
+            <article class="glass-card service-card">
+                <div class="service-icon-box">${s.name.charAt(0)}</div>
+                <h3>${s.name}</h3>
+                <p>${s.description}</p>
+                <div class="service-card-action">
+                    <a class="button button-primary btn-sm" href="request-service.html?service=${encodeURIComponent(s.name)}">Request Service</a>
+                    <a class="button button-secondary btn-sm" href="https://wa.me/2348050765940?text=${encodeURIComponent('Hello SAMSEC LABS, I am interested in ' + s.name)}" target="_blank" rel="noopener">WhatsApp</a>
+                </div>
+            </article>
+        `).join('');
+    </script>
+</body>
+</html>

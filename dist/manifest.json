@@ -1,0 +1,11 @@
+{
+  "name": "SAMSEC LABS",
+  "short_name": "SAMSEC",
+  "description": "Enterprise cybersecurity SaaS platform for secure digital futures.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#050816",
+  "theme_color": "#050816",
+  "orientation": "portrait",
+  "icons": []
+}

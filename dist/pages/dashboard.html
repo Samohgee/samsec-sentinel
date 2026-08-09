@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | SAMSEC LABS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="site-header">
+            <div class="container nav-shell">
+                <a class="brand" href="../index.html">
+                    <span class="brand-mark">S</span>
+                    <span>
+                        <strong>SAMSEC LABS</strong>
+                        <small>Building Secure Digital Futures</small>
+                    </span>
+                </a>
+                <nav class="main-nav" aria-label="Primary navigation">
+                    <a href="../index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="services.html">Services</a>
+                    <a href="portfolio.html">Portfolio</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="contact.html">Contact</a>
+                </nav>
+                <div class="nav-actions">
+                    <a class="button button-secondary" href="contact.html">Talk to us</a>
+                    <a class="button button-primary" href="request-service.html">Request a service</a>
+                </div>
+            </div>
+        </header>
+
+        <main class="container dashboard-shell">
+            <p class="eyebrow">Operations dashboard</p>
+            <h1>Security posture at a glance.</h1>
+            <div class="dashboard-grid">
+                <section class="glass-card panel-card">
+                    <div class="summary-grid">
+                        <article class="summary-card">
+                            <p class="label">Security score</p>
+                            <h3>96</h3>
+                        </article>
+                        <article class="summary-card">
+                            <p class="label">Active threats</p>
+                            <h3>3</h3>
+                        </article>
+                        <article class="summary-card">
+                            <p class="label">Recommendations</p>
+                            <h3>7</h3>
+                        </article>
+                        <article class="summary-card">
+                            <p class="label">Risk level</p>
+                            <h3>Medium</h3>
+                        </article>
+                    </div>
+                    <div class="bar-stack" aria-label="Trend chart">
+                        <span style="height:55%"></span>
+                        <span style="height:70%"></span>
+                        <span style="height:80%"></span>
+                        <span style="height:65%"></span>
+                        <span style="height:90%"></span>
+                    </div>
+                </section>
+                <aside class="glass-card panel-card">
+                    <p class="label">Recent activity</p>
+                    <div class="timeline">
+                        <div class="timeline-item"><span>Scanner completed</span><strong>12m ago</strong></div>
+                        <div class="timeline-item"><span>Threat feed updated</span><strong>31m ago</strong></div>
+                        <div class="timeline-item"><span>Report exported</span><strong>1h ago</strong></div>
+                    </div>
+                </aside>
+            </div>
+        </main>
+    </div>
+
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>
