@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "uvicorn backend.app.main:app --host 0.0.0.0 --port 8000 --reload",
     "start": "uvicorn backend.app.main:app --host 0.0.0.0 --port 8000",
-    "build": "echo \"Static frontend; no build step required.\""
+    "build": "node build.mjs"
   },
   "keywords": ["cybersecurity", "fastapi", "supabase"],
   "license": "MIT"
